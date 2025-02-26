@@ -30,9 +30,17 @@
         <servlet-name>NewServlet</servlet-name>
         <servlet-class>controller.admin.NewServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Ahahah</servlet-name>
+        <servlet-class>controller.user.NewServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Ahahah</servlet-name>
+        <url-pattern>/hha</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>
