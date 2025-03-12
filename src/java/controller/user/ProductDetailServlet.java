@@ -33,28 +33,6 @@ import model.Size;
 public class ProductDetailServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String colorId_raw = request.getParameter("colorid");
-        String sizeId_raw = request.getParameter("sizeid");
-        String productId_raw = request.getParameter("productid");
-        ProductDAO pd = new ProductDAO();
-        try {
-            int colorId = Integer.parseInt(colorId_raw);
-            int sizeId = Integer.parseInt(sizeId_raw);
-            int productId = Integer.parseInt(productId_raw);
-            int quantityStockByColorAndSize = pd.getQuantityStockProductByColorAndSize(colorId, sizeId, productId);
-            System.out.println("quantitystock: " + quantityStockByColorAndSize);
-            int quantitySoldByColorAndSize = pd.getQuantitySoldProductByColorAndSize(productId, colorId, sizeId);
-            System.out.println("quantitysold: " + quantitySoldByColorAndSize);
-            request.setAttribute("quantityStockByColorAndSize", quantityStockByColorAndSize);
-            request.setAttribute("quantitySoldByColorAndSize", quantitySoldByColorAndSize);
-            request.getRequestDispatcher("views/user/item-page/productdetail.jsp").forward(request, response);
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
-    }
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productId_raw = request.getParameter("pid");
         HttpSession session = request.getSession();
@@ -105,6 +83,27 @@ public class ProductDetailServlet extends HttpServlet {
             System.out.println(e);
             System.out.println("xxxx");
             System.err.println("loi chuyen doi so");
+        }
+    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String colorId_raw = request.getParameter("colorid");
+        String sizeId_raw = request.getParameter("sizeid");
+        String productId_raw = request.getParameter("productid");
+        ProductDAO pd = new ProductDAO();
+        try {
+            int colorId = Integer.parseInt(colorId_raw);
+            int sizeId = Integer.parseInt(sizeId_raw);
+            int productId = Integer.parseInt(productId_raw);
+            int quantityStockByColorAndSize = pd.getQuantityStockProductByColorAndSize(colorId, sizeId, productId);
+            System.out.println("quantitystock: " + quantityStockByColorAndSize);
+            int quantitySoldByColorAndSize = pd.getQuantitySoldProductByColorAndSize(productId, colorId, sizeId);
+            System.out.println("quantitysold: " + quantitySoldByColorAndSize);
+            request.setAttribute("quantityStockByColorAndSize", quantityStockByColorAndSize);
+            request.setAttribute("quantitySoldByColorAndSize", quantitySoldByColorAndSize);
+            request.getRequestDispatcher("views/user/item-page/productdetail.jsp").forward(request, response);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
         }
     }
 }
