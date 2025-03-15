@@ -128,5 +128,4 @@ public class FilterProductServlet extends HttpServlet {
         request.setAttribute("totalProductByFilterOrQuery", totalFilter);
         request.getRequestDispatcher("views/user/item-page/shopdetail.jsp").forward(request, response);
     }
-
 }
