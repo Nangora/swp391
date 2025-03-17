@@ -73,16 +73,6 @@ public class HomeServlet extends HttpServlet {
         Map<Order, List<OrderDetail>> ListAllOrderAndOrderDetail = new LinkedHashMap<>();
         ListAllOrderAndOrderDetail = odd.getAllOrderAndOrderDetail();
 
-        double minPrice = Double.MAX_VALUE, maxPrice = Double.MIN_VALUE;
-        for (Product p : listProduct) {
-            if (minPrice > p.getPrice()) {
-                minPrice = p.getPrice();
-            }
-            if (maxPrice < p.getPrice()) {
-                maxPrice = p.getPrice();
-            }
-        }
-
         // xu li remember me
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
